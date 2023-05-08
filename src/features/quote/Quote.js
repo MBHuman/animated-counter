@@ -16,18 +16,13 @@ const Quote = (props) => {
     const handleInput = (event) => {
 
         const { value } = event.target;
-        const regex = /^-?[0-9]*$/;
-
-        if (regex.test(value)) {
-            setIncrement(value)
-        }
+        setIncrement(value)
     }
 
     const handleInputDelay = (event) => {
-        const { value } = event.target;
-        const regex = /^[0-9]*$/;
-
-        if (regex.test(value)) {
+        let { value } = event.target;
+        const nonNegativeRegex = /^[0-9]*$/;
+        if (nonNegativeRegex.test(value)) {
             setDelay(value);
         }
     }
@@ -56,6 +51,8 @@ const Quote = (props) => {
                             xs={9}
                         >
                             <input
+                                min="0"
+                                type='number'
                                 value={delay}
                                 onChange={handleInputDelay}
                             />
@@ -71,6 +68,7 @@ const Quote = (props) => {
                             xs={9}
                         >
                             <input
+                                type="number"
                                 value={increment}
                                 onChange={handleInput}
                             />
